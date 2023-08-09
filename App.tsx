@@ -1,17 +1,17 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useCallback } from "react";
 import { Provider } from "react-redux";
-import DetailScreen from "./screens/DetailScreen";
+import { Routes, Stack } from "./navigation";
 import HomeScreen from "./screens/HomeScreen";
-import ReviewScreen from "./screens/ReviewScreen";
-import { store } from "./store"; 
+import ProductDetailReviewScreen from "./screens/ProductDetailReviewScreen";
+import ProductDetailScreen from "./screens/ProductDetailScreen";
+import ProductsScreen from "./screens/ProductsScreen";
+import { store } from "./store";
 import Theme from "./theme";
 
-const Stack = createNativeStackNavigator();
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -39,14 +39,22 @@ export default function App() {
       <StatusBar backgroundColor={Theme.colors.white} />
       <NavigationContainer onReady={onLayoutRootView}>
         <Stack.Navigator
-          initialRouteName="Home"
+          initialRouteName={Routes.Home}
           screenOptions={{ headerShown: false }}
         >
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Detail" component={DetailScreen} />
-          <Stack.Screen name="Review" component={ReviewScreen} />
+          <Stack.Screen name={Routes.Home} component={HomeScreen} />
+          <Stack.Screen name={Routes.Products} component={ProductsScreen} />
+          <Stack.Screen
+            name={Routes.ProductDetail}
+            component={ProductDetailScreen}
+          />
+          <Stack.Screen
+            name={Routes.ProductDetailReview}
+            component={ProductDetailReviewScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
+       
     </Provider>
   );
 }

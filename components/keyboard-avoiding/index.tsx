@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import { KeyboardAvoidingView, Platform, View, ViewProps } from "react-native";
+import Theme from "../../theme";
 
 const KeyboardAvoidingWrapper = ({
   children,
@@ -7,7 +8,7 @@ const KeyboardAvoidingWrapper = ({
 }: PropsWithChildren<ViewProps>) => {
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1 }}
+      style={{ flex: 1, backgroundColor: Theme.colors.white }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       enabled
     >

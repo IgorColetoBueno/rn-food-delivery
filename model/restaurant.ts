@@ -9,3 +9,12 @@ export interface Restaurant {
   id: string;
   categories: string[];
 }
+
+export const restaurantCategories = [
+  "Popular",
+  "Drinks",
+  "Arabian",
+  "Barbecue",
+  "Foodtruck",
+  "Sushi",
+];

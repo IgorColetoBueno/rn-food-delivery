@@ -1,4 +1,3 @@
-import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
@@ -11,15 +10,12 @@ import SearchInput from "../components/search-input";
 import { TextBody } from "../components/typography";
 import useDebounce from "../hooks/useDebounce";
 import { restaurantCategories } from "../model/restaurant";
-import { BaseStackParams, Routes } from "../navigation";
 import { useGetRestaurantsQuery } from "../store/api";
 import Theme from "../theme";
 
-interface HomeScreenProps {}
+interface ProductDetailScreenProps {}
 
-const HomeScreen = ({}: HomeScreenProps) => {
-  const navigation =
-    useNavigation<NavigationProp<BaseStackParams, Routes.Home>>();
+const ProductDetailScreen = ({}: ProductDetailScreenProps) => {
   const [selected, setSelected] = useState<string[]>([]);
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 200);
@@ -36,7 +32,7 @@ const HomeScreen = ({}: HomeScreenProps) => {
       showsVerticalScrollIndicator={false}
       safeAreaProps={{ style: { backgroundColor: Theme.colors.white } }}
     >
-      <StatusBar backgroundColor="transparent" />
+      <StatusBar />
       <Column flex={1}>
         <ImageBackground
           style={{ height: 400, flex: 1 }}
@@ -85,11 +81,7 @@ const HomeScreen = ({}: HomeScreenProps) => {
               <RestaurantCard
                 key={restaurant.id}
                 restaurant={restaurant}
-                onPress={() =>
-                  navigation.navigate(Routes.Products, {
-                    resturantId: restaurant.id,
-                  })
-                }
+                onPress={() => {}}
               />
             ))}
         </Column>
@@ -107,4 +99,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default ProductDetailScreen;

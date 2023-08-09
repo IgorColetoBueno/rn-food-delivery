@@ -8,6 +8,7 @@ export interface Review {
 export interface Product {
   createdAt: string;
   name: string;
+  description: string;
   value: number;
   photos: string[];
   reviews: Review[];

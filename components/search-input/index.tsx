@@ -1,72 +1,52 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import {
-  NativeSyntheticEvent,
   StyleSheet,
   TextInput,
-  TextInputFocusEventData,
   TextInputProps,
-  TouchableOpacity,
+  TouchableOpacity
 } from "react-native";
 
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Theme from "../../theme";
-import Box, { Row } from "../flex";
-import MaterialIcons from '@expo/vector-icons/MaterialIcons'
+import { Row } from "../flex";
 
 interface SearchInputProps extends TextInputProps {}
 
 const SearchInput = ({ onFocus, onBlur, ...props }: SearchInputProps) => {
-  const [focused, setFocused] = useState(false);
   const handleClearSearch = () => {
     props.onChangeText?.("");
   };
 
-  const handleFocus = useCallback(
-    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-      setFocused(true);
-      onFocus?.(e);
-    },
-    [onFocus],
-  );
-
-  const handleBlur = useCallback(
-    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-      setFocused(false);
-      onBlur?.(e);
-    },
-    [onBlur],
-  );
-
   return (
-    <Box>
-      <Row
-        alignItems="center"
-        borderColor={focused ? Theme.colors.black : Theme.colors["dark-gray"]}
-        borderWidth={1}
-        borderRadius={8}
-      >
-        <TextInput
-          style={[styles.searchInput, Theme.typography.body]}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          {...props}
-        />
-        {props.value !== "" && (
-          <TouchableOpacity
-            style={styles.clearButton}
-            onPress={handleClearSearch}
-          > 
-          <MaterialIcons name="close"/>
-          </TouchableOpacity>
-        )}
-      </Row>
-    </Box>
+    <Row
+      backgroundColor={Theme.colors["light-gray"]}
+      alignItems="center"
+      borderRadius={8}
+    >
+      <TextInput
+        style={[styles.searchInput, Theme.typography.body]}
+        {...props}
+      />
+      {props.value !== "" && (
+        <TouchableOpacity
+          style={styles.clearButton}
+          onPress={handleClearSearch}
+        >
+          <MaterialIcons
+            color={Theme.colors["dark-gray"]}
+            size={Theme.spacing.md}
+            name="close"
+          />
+        </TouchableOpacity>
+      )}
+    </Row>
   );
 };
 
 const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
-    height: 40,
+    height: Theme.spacing["2xl"],
     paddingHorizontal: Theme.spacing.xs,
   },
   clearButton: {
