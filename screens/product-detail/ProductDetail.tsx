@@ -1,46 +1,59 @@
-// import React, { useCallback, useMemo, useRef } from 'react';
-// import { View, Text, StyleSheet } from 'react-native';
-// import BottomSheet from '@gorhom/bottom-sheet';
+import BottomSheet, {
+  BottomSheetBackdrop,
+  BottomSheetBackdropProps,
+} from "@gorhom/bottom-sheet";
+import React, { useCallback, useEffect, useRef } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { useAppDispatch, useAppState } from "../../store";
+import { removeDetailProduct } from "../../store/detailSlice";
+import PhotoCarousel from "../../components/carousel";
+import { Column } from "../../components/flex";
+import Theme from "../../theme";
+import { TextBody, TextH2, TextH4 } from "../../components/typography";
 
-// const ProductDetail = () => {
-//   // ref
-//   const bottomSheetRef = useRef<BottomSheet>(null);
+const snapPoints = ["10%", "80%"];
 
-//   // variables
-//   const snapPoints = useMemo(() => ['25%', '50%'], []);
+const ProductDetail = () => {
+  const bottomSheetRef = useRef<BottomSheet>(null);
+  const dispatch = useAppDispatch();
+  const detail = useAppState((q) => q.detail.detail);
 
-//   // callbacks
-//   const handleSheetChanges = useCallback((index: number) => {
-//     console.log('handleSheetChanges', index);
-//   }, []);
+  useEffect(() => {
+    if (detail) {
+      bottomSheetRef.current?.snapToIndex(1);
+    }
+  }, [detail]);
 
-//   // renders
-//   return (
-//     <View style={styles.container}>
-//       <BottomSheet
-//         ref={bottomSheetRef}
-//         index={1}
-//         snapPoints={snapPoints}
-//         onChange={handleSheetChanges}
-//       >
-//         <View style={styles.contentContainer}>
-//           <Text>Awesome 🎉</Text>
-//         </View>
-//       </BottomSheet>
-//     </View>
-//   );
-// };
+  const onClose = useCallback(async () => {
+    await dispatch(removeDetailProduct());
+    bottomSheetRef.current?.snapToIndex(-1);
+  }, []);
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     padding: 24,
-//     backgroundColor: 'grey',
-//   },
-//   contentContainer: {
-//     flex: 1,
-//     alignItems: 'center',
-//   },
-// });
+  return (
+    <BottomSheet
+      onClose={onClose}
+      ref={bottomSheetRef}
+      index={1}
+      snapPoints={snapPoints}
+      backdropComponent={(props: BottomSheetBackdropProps) => {
+        return (
+          <BottomSheetBackdrop
+            {...props}
+            disappearsOnIndex={-1}
+            appearsOnIndex={1}
+          />
+        );
+      }}
+    >
+      <Column gap={Theme.spacing.sm} >
+        <Column gap={Theme.spacing.xxs} paddingHorizontal={Theme.spacing.md}>
+          <TextH2 family="poppins">{detail?.name}</TextH2>
+          <TextBody>{detail?.description}</TextBody>
+        </Column>
+        <PhotoCarousel images={detail?.photos || []} />
+      </Column>
+    </BottomSheet>
+  );
+};
 
-// export default ProductDetail;
+export default ProductDetail;
