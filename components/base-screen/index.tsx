@@ -5,14 +5,15 @@ import {
   SafeAreaView,
 } from "react-native-safe-area-context";
 import { NativeProps } from "react-native-safe-area-context/lib/typescript/src/specs/NativeSafeAreaView";
-import KeyboardAvoidingWrapper from "../keyboard-avoiding";
+
 import Theme from "../../theme";
+import KeyboardAvoidingWrapper from "../keyboard-avoiding";
 
 interface BaseScreenProps extends ScrollViewProps {
   scrollable?: boolean;
   safeAreaProps?: NativeSafeAreaViewProps &
     React.RefAttributes<
-      React.Component<NativeProps, {}, any> & Readonly<NativeMethods>
+      React.Component<NativeProps, object, any> & Readonly<NativeMethods>
     >;
   noSpacing?: boolean;
 }
@@ -26,7 +27,7 @@ const BaseScreen = ({
 }: PropsWithChildren<BaseScreenProps>) => {
   const Component = useMemo(
     () => (scrollable ? ScrollView : View),
-    [scrollable]
+    [scrollable],
   );
 
   if (noSpacing) {

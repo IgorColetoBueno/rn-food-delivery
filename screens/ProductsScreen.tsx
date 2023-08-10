@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { Fragment } from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 import BaseScreen from "../components/base-screen";
 import RoundedButton from "../components/button/RoundedButton";
 import CardShimmer from "../components/card/CardShimmer";
@@ -23,11 +24,9 @@ import { setDetailProduct } from "../store/detailSlice";
 import Theme from "../theme";
 import { formatMoney } from "../util/money";
 
-interface ProductsScreenProps {}
-
 type ProfileScreenRouteProp = RouteProp<BaseStackParams, Routes.Products>;
 
-const ProductsScreen = ({}: ProductsScreenProps) => {
+const ProductsScreen = () => {
   const dispatch = useAppDispatch();
   const opacity = useShimmer();
   const { top } = useSafeAreaInsets();

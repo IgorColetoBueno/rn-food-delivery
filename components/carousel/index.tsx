@@ -1,11 +1,10 @@
-import React, { useRef, useEffect } from "react";
-import { View, Image, Dimensions, StyleSheet } from "react-native";
-import Animated, {
-  useSharedValue,
-  useAnimatedScrollHandler,
-  interpolateColor,
-} from "react-native-reanimated";
+import React, { useRef } from "react";
+import { Dimensions, StyleSheet, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+import Animated, {
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from "react-native-reanimated";
 
 const { width } = Dimensions.get("window");
 
@@ -33,7 +32,7 @@ const PhotoCarousel = ({ images }: Props) => {
         onScroll={(e) => {
           try {
             scrollHandler(e);
-          } catch (error) {}
+          } catch (_) {}
         }}
         scrollEventThrottle={16}
         renderItem={({ item }) => (

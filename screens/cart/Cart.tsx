@@ -1,6 +1,7 @@
 import BottomSheet from "@gorhom/bottom-sheet";
 import React, { useRef } from "react";
 import { StyleSheet, Text, View } from "react-native";
+
 import { useAppState } from "../../store";
 
 const snapPoints = ["25%", "50%"];
@@ -14,7 +15,12 @@ const Cart = () => {
 
   return (
     <View style={styles.container}>
-      <BottomSheet ref={bottomSheetRef} index={1} snapPoints={snapPoints}>
+      <BottomSheet
+        enablePanDownToClose
+        ref={bottomSheetRef}
+        index={1}
+        snapPoints={snapPoints}
+      >
         <View style={styles.contentContainer}>
           <Text>Awesome 🎉</Text>
         </View>

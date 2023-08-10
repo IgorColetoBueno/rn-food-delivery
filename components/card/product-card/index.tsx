@@ -1,4 +1,5 @@
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
+
 import { Product } from "../../../model/product";
 import Theme from "../../../theme";
 import { formatMoney } from "../../../util/money";
@@ -40,9 +41,5 @@ const ProductCard = ({
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  imageBackground: {},
-});
 
 export default ProductCard;

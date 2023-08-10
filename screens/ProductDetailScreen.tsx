@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
+
 import BaseScreen from "../components/base-screen";
 import CardShimmer from "../components/card/CardShimmer";
 import RestaurantCard from "../components/card/restaurant-card";
@@ -13,9 +14,7 @@ import { restaurantCategories } from "../model/restaurant";
 import { useGetRestaurantsQuery } from "../store/api";
 import Theme from "../theme";
 
-interface ProductDetailScreenProps {}
-
-const ProductDetailScreen = ({}: ProductDetailScreenProps) => {
+const ProductDetailScreen = () => {
   const [selected, setSelected] = useState<string[]>([]);
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 200);

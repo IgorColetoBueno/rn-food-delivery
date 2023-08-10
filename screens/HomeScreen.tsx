@@ -2,6 +2,7 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
+
 import BaseScreen from "../components/base-screen";
 import CardShimmer from "../components/card/CardShimmer";
 import RestaurantCard from "../components/card/restaurant-card";
@@ -15,9 +16,7 @@ import { BaseStackParams, Routes } from "../navigation";
 import { useGetRestaurantsQuery } from "../store/api";
 import Theme from "../theme";
 
-interface HomeScreenProps {}
-
-const HomeScreen = ({}: HomeScreenProps) => {
+const HomeScreen = () => {
   const navigation =
     useNavigation<NavigationProp<BaseStackParams, Routes.Home>>();
   const [selected, setSelected] = useState<string[]>([]);

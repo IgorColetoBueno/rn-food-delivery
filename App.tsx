@@ -4,7 +4,9 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useCallback } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
+
 import { Routes, Stack } from "./navigation";
 import HomeScreen from "./screens/HomeScreen";
 import ProductDetailReviewScreen from "./screens/ProductDetailReviewScreen";
@@ -39,28 +41,30 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Provider store={store}>
-        <StatusBar backgroundColor={Theme.colors.white} />
-        <NavigationContainer onReady={onLayoutRootView}>
-          <Stack.Navigator
-            initialRouteName={Routes.Home}
-            screenOptions={{ headerShown: false }}
-          >
-            <Stack.Screen name={Routes.Home} component={HomeScreen} />
-            <Stack.Screen name={Routes.Products} component={ProductsScreen} />
-            <Stack.Screen
-              name={Routes.ProductDetail}
-              component={ProductDetailScreen}
-            />
-            <Stack.Screen
-              name={Routes.ProductDetailReview}
-              component={ProductDetailReviewScreen}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-        <ProductDetail />
-        <Cart />
-      </Provider>
+      <SafeAreaProvider>
+        <Provider store={store}>
+          <StatusBar backgroundColor={Theme.colors.white} />
+          <NavigationContainer onReady={onLayoutRootView}>
+            <Stack.Navigator
+              initialRouteName={Routes.Home}
+              screenOptions={{ headerShown: false }}
+            >
+              <Stack.Screen name={Routes.Home} component={HomeScreen} />
+              <Stack.Screen name={Routes.Products} component={ProductsScreen} />
+              <Stack.Screen
+                name={Routes.ProductDetail}
+                component={ProductDetailScreen}
+              />
+              <Stack.Screen
+                name={Routes.ProductDetailReview}
+                component={ProductDetailReviewScreen}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+          <ProductDetail />
+          <Cart />
+        </Provider>
+      </SafeAreaProvider>
     </GestureHandlerRootView>
   );
 }

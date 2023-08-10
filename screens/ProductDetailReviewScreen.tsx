@@ -1,6 +1,4 @@
-interface ProductDetailReviewScreenProps {}
-
-const ProductDetailReviewScreen = ({}: ProductDetailReviewScreenProps) => {
+const ProductDetailReviewScreen = () => {
   return <></>;
 };
 

@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import { KeyboardAvoidingView, Platform, View, ViewProps } from "react-native";
+
 import Theme from "../../theme";
 
 const KeyboardAvoidingWrapper = ({

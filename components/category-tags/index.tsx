@@ -1,8 +1,9 @@
-import { Pressable, ScrollView, View } from "react-native";
-import Box, { Row } from "../flex";
-import { TextBody, TextBody2 } from "../typography";
-import Theme from "../../theme";
 import { useCallback } from "react";
+import { Pressable, ScrollView } from "react-native";
+
+import Theme from "../../theme";
+import Box, { Row } from "../flex";
+import { TextBody2 } from "../typography";
 
 interface CategoryTagProps {
   label: string;
@@ -45,7 +46,7 @@ const CategoryList = ({
         onSelectedChange([category]);
       }
     },
-    [selected]
+    [onSelectedChange, selected],
   );
   return (
     <Row>

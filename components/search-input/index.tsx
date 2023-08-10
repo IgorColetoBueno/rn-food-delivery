@@ -1,12 +1,12 @@
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import React from "react";
 import {
   StyleSheet,
   TextInput,
   TextInputProps,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Theme from "../../theme";
 import { Row } from "../flex";
 

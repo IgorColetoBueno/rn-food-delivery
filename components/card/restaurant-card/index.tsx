@@ -1,11 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
+import { Fragment } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
+
 import { Restaurant } from "../../../model/restaurant";
 import Theme from "../../../theme";
+import { formatMoney } from "../../../util/money";
 import { Column, Row } from "../../flex";
 import { TextBody, TextBody2, TextH4 } from "../../typography";
-import { formatMoney } from "../../../util/money";
-import { Fragment } from "react";
 
 interface RestaurantCardProps {
   restaurant: Restaurant;
@@ -68,9 +69,5 @@ const RestaurantCard = ({
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  imageBackground: {},
-});
 
 export default RestaurantCard;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Animated, StyleSheet } from "react-native";
+
 import Theme from "../../theme";
 
 interface ShimmerCircleProps {
@@ -15,7 +16,7 @@ const ShimmerCircle = ({ opacity, size }: ShimmerCircleProps) => {
   return (
     <Animated.View
       style={[styles.circle, shimmerStyle, { width: size, height: size }]}
-    ></Animated.View>
+    />
   );
 };
 

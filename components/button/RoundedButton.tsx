@@ -1,6 +1,13 @@
-import { Pressable, PressableProps, StyleSheet, View, ViewStyle } from "react-native";
-import Theme from "../../theme";
 import { PropsWithChildren } from "react";
+import {
+  Pressable,
+  PressableProps,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from "react-native";
+
+import Theme from "../../theme";
 
 const RoundedButton = ({
   children,

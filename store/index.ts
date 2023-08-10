@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
+import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
+
 import { api } from "./api";
 import cartSlice from "./cartSlice";
-import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import detailSlice from "./detailSlice";
 
 export const store = configureStore({
@@ -17,10 +18,9 @@ export const store = configureStore({
 
 setupListeners(store.dispatch);
 
-export type AppDispatch = typeof store.dispatch
-export const useAppDispatch: () => AppDispatch = useDispatch
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch: () => AppDispatch = useDispatch;
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 
 export const useAppState: TypedUseSelectorHook<RootState> = useSelector;
- 
