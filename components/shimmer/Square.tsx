@@ -1,5 +1,6 @@
 import React from "react";
 import { Animated, StyleSheet } from "react-native";
+
 import Theme from "../../theme";
 
 interface ShimmerSquareProps {
@@ -15,7 +16,7 @@ const ShimmerSquare = ({ opacity, size }: ShimmerSquareProps) => {
   return (
     <Animated.View
       style={[styles.square, shimmerStyle, { width: size, height: size }]}
-    ></Animated.View>
+    />
   );
 };
 

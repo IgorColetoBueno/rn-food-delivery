@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 import { StyleProp, Text, TextStyle } from "react-native";
+
 import Theme, { Color, Typography as TypographyType } from "../../theme";
 
 interface TypographyProps {

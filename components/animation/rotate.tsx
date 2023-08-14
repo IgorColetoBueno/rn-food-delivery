@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Animated, StyleSheet, View, ViewProps } from "react-native";
+import { Animated, ViewProps } from "react-native";
 
 interface RotatingComponentProps extends ViewProps {}
 
@@ -20,6 +20,7 @@ const RotatingComponent = ({
 
   useEffect(() => {
     startRotationAnimation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Interpolate the rotation value for the animated style

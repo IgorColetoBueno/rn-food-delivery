@@ -58,7 +58,7 @@ const Theme: ThemeProps = {
     "light-cyan": "#A8DADC",
     "light-gray": "#F1FAEE",
     "dark-gray": "#a0aab2",
-    "yellow": "#ffb703",
+    yellow: "#ffb703",
     blue: "#457B9D",
     red: "#E63946",
     white: "#FFF",

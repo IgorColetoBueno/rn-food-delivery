@@ -18,10 +18,17 @@ const Button = ({
   ...rest
 }: ButtonProps) => {
   return (
-    <Pressable {...rest} style={[style, styles.button, { backgroundColor }]}>
-      <TextBody color={color} style={{ fontWeight: "500" }}>
-        {title}
-      </TextBody>
+    <Pressable
+      {...rest}
+      style={(e) => {
+        return [
+          style,
+          styles.button,
+          { backgroundColor, opacity: e.pressed ? 0.8 : 1 },
+        ];
+      }}
+    >
+      <TextBody color={color}>{title}</TextBody>
     </Pressable>
   );
 };
@@ -30,7 +37,7 @@ const styles = StyleSheet.create({
   button: {
     paddingVertical: Theme.spacing.sm,
     paddingHorizontal: Theme.spacing.md,
-    borderRadius: Theme.spacing["3xl"],
+    borderRadius: Theme.spacing["sm"],
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

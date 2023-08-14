@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { Animated } from 'react-native';
+import { useEffect, useRef } from "react";
+import { Animated } from "react-native";
 
 const useShimmer = () => {
   const shimmerOpacity = useRef(new Animated.Value(0.5)).current;
@@ -30,6 +30,7 @@ const useShimmer = () => {
     return () => {
       animation.stop();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return shimmerOpacity;

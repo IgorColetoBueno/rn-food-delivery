@@ -1,5 +1,6 @@
 import React from "react";
 import { Animated, StyleSheet } from "react-native";
+
 import Theme from "../../theme";
 
 interface ShimmerRectangleProps {
@@ -11,9 +12,7 @@ const ShimmerRectangle = ({ opacity }: ShimmerRectangleProps) => {
     opacity,
   };
 
-  return (
-    <Animated.View style={[styles.rectangle, shimmerStyle]}></Animated.View>
-  );
+  return <Animated.View style={[styles.rectangle, shimmerStyle]} />;
 };
 
 const styles = StyleSheet.create({

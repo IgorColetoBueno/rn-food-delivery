@@ -1,17 +1,19 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useCallback } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
-import DetailScreen from "./screens/DetailScreen";
-import HomeScreen from "./screens/HomeScreen";
-import ReviewScreen from "./screens/ReviewScreen";
-import { store } from "./store"; 
-import Theme from "./theme";
 
-const Stack = createNativeStackNavigator();
+import { Routes, Stack } from "./navigation";
+import HomeScreen from "./screens/HomeScreen";
+import ProductsScreen from "./screens/ProductsScreen";
+import Cart from "./screens/cart/Cart";
+import ProductDetail from "./screens/product-detail/ProductDetail";
+import { store } from "./store";
+
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -35,18 +37,24 @@ export default function App() {
   }
 
   return (
-    <Provider store={store}>
-      <StatusBar backgroundColor={Theme.colors.white} />
-      <NavigationContainer onReady={onLayoutRootView}>
-        <Stack.Navigator
-          initialRouteName="Home"
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Detail" component={DetailScreen} />
-          <Stack.Screen name="Review" component={ReviewScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <Provider store={store}>
+          <StatusBar translucent backgroundColor="transparent" />
+
+          <NavigationContainer onReady={onLayoutRootView}>
+            <Stack.Navigator
+              initialRouteName={Routes.Home}
+              screenOptions={{ headerShown: false }}
+            >
+              <Stack.Screen name={Routes.Home} component={HomeScreen} />
+              <Stack.Screen name={Routes.Products} component={ProductsScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+          <ProductDetail />
+          <Cart />
+        </Provider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }

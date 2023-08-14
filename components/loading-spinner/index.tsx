@@ -1,10 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
-import RotatingComponent from "../animation/rotate";
+
 import Theme from "../../theme";
+import RotatingComponent from "../animation/rotate";
 
-interface LoadingSpinnerProps {}
-
-const LoadingSpinner = ({}: LoadingSpinnerProps) => {
+const LoadingSpinner = () => {
   return (
     <RotatingComponent
       style={{

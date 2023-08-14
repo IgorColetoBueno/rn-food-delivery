@@ -4,25 +4,48 @@ import {
   NativeSafeAreaViewProps,
   SafeAreaView,
 } from "react-native-safe-area-context";
-import { NativeProps } from "react-native-safe-area-context/lib/typescript/src/specs/NativeSafeAreaView"; 
-import KeyboardAvoidingWrapper from "../keyboard-avoiding";
+import { NativeProps } from "react-native-safe-area-context/lib/typescript/src/specs/NativeSafeAreaView";
+
 import Theme from "../../theme";
+import KeyboardAvoidingWrapper from "../keyboard-avoiding";
 
 interface BaseScreenProps extends ScrollViewProps {
   scrollable?: boolean;
   safeAreaProps?: NativeSafeAreaViewProps &
     React.RefAttributes<
-      React.Component<NativeProps, {}, any> & Readonly<NativeMethods>
+      React.Component<NativeProps, object, any> & Readonly<NativeMethods>
     >;
+  noSpacing?: boolean;
 }
 
 const BaseScreen = ({
   children,
   scrollable,
   safeAreaProps,
+  noSpacing,
   ...rest
 }: PropsWithChildren<BaseScreenProps>) => {
-  const Component = useMemo(() => (scrollable ? ScrollView : View), []);
+  const Component = useMemo(
+    () => (scrollable ? ScrollView : View),
+    [scrollable],
+  );
+
+  if (noSpacing) {
+    return (
+      <KeyboardAvoidingWrapper>
+        <Component
+          scrollEnabled
+          alwaysBounceVertical={false}
+          bounces={false}
+          overScrollMode="never"
+          {...rest}
+          style={{ flex: 1 }}
+        >
+          {children}
+        </Component>
+      </KeyboardAvoidingWrapper>
+    );
+  }
 
   return (
     <KeyboardAvoidingWrapper>
