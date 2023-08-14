@@ -9,13 +9,10 @@ import { Provider } from "react-redux";
 
 import { Routes, Stack } from "./navigation";
 import HomeScreen from "./screens/HomeScreen";
-import ProductDetailReviewScreen from "./screens/ProductDetailReviewScreen";
-import ProductDetailScreen from "./screens/ProductDetailScreen";
 import ProductsScreen from "./screens/ProductsScreen";
 import Cart from "./screens/cart/Cart";
 import ProductDetail from "./screens/product-detail/ProductDetail";
 import { store } from "./store";
-import Theme from "./theme";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -43,7 +40,8 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <Provider store={store}>
-          <StatusBar backgroundColor={Theme.colors.white} />
+          <StatusBar translucent backgroundColor="transparent" />
+
           <NavigationContainer onReady={onLayoutRootView}>
             <Stack.Navigator
               initialRouteName={Routes.Home}
@@ -51,14 +49,6 @@ export default function App() {
             >
               <Stack.Screen name={Routes.Home} component={HomeScreen} />
               <Stack.Screen name={Routes.Products} component={ProductsScreen} />
-              <Stack.Screen
-                name={Routes.ProductDetail}
-                component={ProductDetailScreen}
-              />
-              <Stack.Screen
-                name={Routes.ProductDetailReview}
-                component={ProductDetailReviewScreen}
-              />
             </Stack.Navigator>
           </NavigationContainer>
           <ProductDetail />

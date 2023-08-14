@@ -35,7 +35,8 @@ const HomeScreen = () => {
       showsVerticalScrollIndicator={false}
       safeAreaProps={{ style: { backgroundColor: Theme.colors.white } }}
     >
-      <StatusBar backgroundColor="transparent" />
+      <StatusBar translucent backgroundColor="transparent" />
+
       <Column flex={1}>
         <ImageBackground
           style={{ height: 400, flex: 1 }}

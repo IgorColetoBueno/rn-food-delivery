@@ -32,6 +32,7 @@ const PhotoCarousel = ({ images }: Props) => {
         onScroll={(e) => {
           try {
             scrollHandler(e);
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
           } catch (_) {}
         }}
         scrollEventThrottle={16}

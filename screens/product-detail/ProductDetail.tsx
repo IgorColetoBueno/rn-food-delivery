@@ -14,6 +14,7 @@ import Box, { Column, Row } from "../../components/flex";
 import NumberInput from "../../components/number-input";
 import { TextBody, TextH2 } from "../../components/typography";
 import { useAppState } from "../../store";
+import { addItem } from "../../store/cartSlice";
 import { removeDetailProduct } from "../../store/detailSlice";
 import Theme from "../../theme";
 
@@ -26,7 +27,7 @@ const ProductDetail = () => {
 
   // Set default to 92% of the screen height initially
   const [dynamicSnapPoints, setDynamicSnapPoints] = useState<string[]>([
-    "90%",
+    "10%",
     "90%",
   ]);
 
@@ -53,6 +54,10 @@ const ProductDetail = () => {
     }
   }, []);
 
+  const addToCard = useCallback(async () => {
+    await dispatch(addItem({ product: detail!, quantity, observation: "" }));
+    bottomSheetRef.current?.close();
+  }, [detail, dispatch, quantity]);
   return (
     <BottomSheet
       enablePanDownToClose
@@ -90,7 +95,11 @@ const ProductDetail = () => {
               />
             </Box>
             <Box flexGrow={1}>
-              <Button backgroundColor="red" title="Add item" />
+              <Button
+                onPress={addToCard}
+                backgroundColor="red"
+                title="Add item"
+              />
             </Box>
           </Row>
           <View style={{ height: bottom + Theme.spacing.lg }} />

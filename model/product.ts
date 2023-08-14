@@ -1,3 +1,5 @@
+import { Restaurant } from "./restaurant";
+
 export interface Review {
   id: string;
   review: string;
@@ -13,5 +15,6 @@ export interface Product {
   photos: string[];
   reviews: Review[];
   restaurantId: string;
+  restaurant?: Restaurant;
   id: string;
 }

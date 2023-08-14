@@ -36,6 +36,8 @@ const BaseScreen = ({
         <Component
           scrollEnabled
           alwaysBounceVertical={false}
+          bounces={false}
+          overScrollMode="never"
           {...rest}
           style={{ flex: 1 }}
         >

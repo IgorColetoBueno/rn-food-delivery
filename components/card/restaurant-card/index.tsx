@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Fragment } from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 
 import { Restaurant } from "../../../model/restaurant";
 import Theme from "../../../theme";

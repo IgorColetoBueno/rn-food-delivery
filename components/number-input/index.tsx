@@ -1,18 +1,27 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import React, { useCallback } from "react";
 import {
+  StyleProp,
   StyleSheet,
   TextInput,
   TextInputProps,
   TouchableOpacity,
+  ViewStyle,
 } from "react-native";
 
 import Theme from "../../theme";
 import { Row } from "../flex";
 
-interface NumberInputProps extends TextInputProps {}
+interface NumberInputProps extends TextInputProps {
+  flat?: boolean;
+}
 
-const NumberInput = ({ onFocus, onBlur, ...props }: NumberInputProps) => {
+const NumberInput = ({
+  onFocus,
+  onBlur,
+  flat = false,
+  ...props
+}: NumberInputProps) => {
   const subtract = useCallback(() => {
     props.onChangeText?.((+(props.value || "0") - 1).toString());
   }, [props]);
@@ -20,6 +29,10 @@ const NumberInput = ({ onFocus, onBlur, ...props }: NumberInputProps) => {
   const add = useCallback(() => {
     props.onChangeText?.((+(props.value || "0") + 1).toString());
   }, [props]);
+
+  const operatorStyle: StyleProp<ViewStyle> = {
+    padding: flat ? Theme.spacing.xxs : Theme.spacing.xs,
+  };
 
   return (
     <Row
@@ -29,7 +42,7 @@ const NumberInput = ({ onFocus, onBlur, ...props }: NumberInputProps) => {
       borderWidth={1}
       borderColor={Theme.colors["dark-gray"]}
     >
-      <TouchableOpacity style={styles.operators} onPress={subtract}>
+      <TouchableOpacity style={operatorStyle} onPress={subtract}>
         <MaterialIcons
           color={Theme.colors.black}
           size={Theme.spacing.lg}
@@ -39,7 +52,7 @@ const NumberInput = ({ onFocus, onBlur, ...props }: NumberInputProps) => {
       <TextInput style={[styles.input, Theme.typography.body]} {...props} />
       <TouchableOpacity
         hitSlop={Theme.spacing.sm}
-        style={styles.operators}
+        style={operatorStyle}
         onPress={add}
       >
         <MaterialIcons
@@ -54,11 +67,9 @@ const NumberInput = ({ onFocus, onBlur, ...props }: NumberInputProps) => {
 
 const styles = StyleSheet.create({
   input: {
-    flex: 1, 
+    flex: 1,
     textAlign: "center",
-  },
-  operators: {
-    padding: Theme.spacing.xs,
+    color: "black",
   },
 });
 

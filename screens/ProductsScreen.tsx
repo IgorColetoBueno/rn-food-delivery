@@ -44,7 +44,7 @@ const ProductsScreen = () => {
   const shouldShowRestaurant = !restaurantFetching && !restaurantError;
 
   const handleProduct = (product: Product) => () => {
-    dispatch(setDetailProduct(product));
+    dispatch(setDetailProduct({ ...product, restaurant }));
   };
 
   return (
