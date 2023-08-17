@@ -16,5 +16,13 @@ A React Native with Expo app for food delivery with the following features:
 
 ## Preview
 
-https://drive.google.com/file/d/19nY08H8hq_4epk5Dh-Jv7SohtPokQY8b/view?usp=sharing
-https://drive.google.com/file/d/1hXvgT0MIaUKl0rdc5Bycowq8nifMBGY0/view?usp=sharing
+Android
+
+https://github.com/IgorColetoBueno/rn-food-delivery/assets/17251330/aa4be44b-0d1a-4216-a592-f069b59cd2f4
+
+iOS
+
+https://github.com/IgorColetoBueno/rn-food-delivery/assets/17251330/e28852a8-a06e-4755-b5b4-22d2037bf214
+
+
+
